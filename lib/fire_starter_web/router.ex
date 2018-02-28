@@ -16,7 +16,8 @@ defmodule FireStarterWeb.Router do
   scope "/", FireStarterWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    # get "/", PageController, :index # new application default
+    get "/", VideoController, :index
   end
 
   # Other scopes may use custom stacks.

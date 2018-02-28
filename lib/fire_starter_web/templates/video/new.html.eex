@@ -1,0 +1,9 @@
+<h2>New Video</h2>
+
+<div>
+  stuff...
+</div>
+
+<div>
+  <%= link "Videos Index", to: video_path(@conn, :index) %>
+</div>

@@ -18,6 +18,8 @@ defmodule FireStarterWeb.Router do
 
     # get "/", PageController, :index # new application default
     get "/", VideoController, :index
+    get "/videos/new", VideoController, :new
+    post "/videos", VideoController, :create
   end
 
   # Other scopes may use custom stacks.

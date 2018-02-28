@@ -8,4 +8,9 @@ defmodule FireStarterWeb.VideoController do
 
     render(conn, "index.html", videos: videos)
   end
+
+  def new(conn, _) do
+    render(conn, "new.html")
+  end
+
 end

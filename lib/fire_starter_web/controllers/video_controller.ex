@@ -2,6 +2,6 @@ defmodule FireStarterWeb.VideoController do
   use FireStarterWeb, :controller
 
   def index(conn, _) do
-    text(conn, "This is the videos page!")
+    render(conn, "index.html")
   end
 end

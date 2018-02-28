@@ -1,1 +1,10 @@
 <h2>Videos</h2>
+
+<ul id="videos-list">
+  <%= for video <- @videos do %>
+    <li>
+      <%= video.title %> -
+      <em><%= display_duration(video.duration) %></em>
+    </li>
+  <% end %>
+</ul>

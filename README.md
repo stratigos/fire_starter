@@ -6,8 +6,8 @@ This application demonstrates a simple and straightforward Phoenix web app - CRU
 
 ## Deps
 
- * Phoenix 1.3
- * Elixir 1.6
+ * Phoenix 1.3 :fire:
+ * Elixir 1.6 :droplet:
  
 
 ## **TODO: Add description** 

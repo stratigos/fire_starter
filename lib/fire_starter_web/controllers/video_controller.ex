@@ -1,10 +1,10 @@
 defmodule FireStarterWeb.VideoController do
   use FireStarterWeb, :controller
 
-  alias FireStarter.{Repo,Video}
+  alias FireStarter.Screencast
 
   def index(conn, _) do
-    videos = Repo.all(Video)
+    videos = Screencast.list_videos()
 
     render(conn, "index.html", videos: videos)
   end
@@ -13,26 +13,25 @@ defmodule FireStarterWeb.VideoController do
     # Since this is a new record, the changeset consists of an empty Struct,
     #  with an empty Map applied to it (as opposed to a key-val of some sort
     #  with attributes and values).
-    # @see Video.changeset/2
-    changeset = Video.changeset(%Video{}, %{})
+    # @see Screencast.change_video/0
+    changeset = Screencast.change_video()
 
     # Pass this empty changeset to the template.
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"video" => video_params}) do
+    # Create the record.
     # Since this is the POST-ed data matching the request after `new/2` above,
     #  the `changeset` is now an empty, or _new_ Struct. The key-val (a Map,
     #  created from pattern matching against the request params passed to
     #  `create/2`) argument now contains attributes and designated values.
-    changeset = Video.changeset(%Video{}, video_params)
-
-    # Create the record.
     # On success, return a standard Elixir tuple containing the record. Display
     #  a flash message to the user.
     # On fail, load the changeset into the template for `new/2` and re-render.
     #  Display a failure message to the user.
-    case Repo.insert(changeset) do
+    # @see Screencast.create_video/1
+    case Screencast.create_video(video_params) do
       # On success, the Video record would be returned, but it isn't needed, so
       #  it is replaced with the `_` char to denote it is being ignored. Then,
       #  an anonymous function is called which handles setting the flash msg
@@ -54,10 +53,7 @@ defmodule FireStarterWeb.VideoController do
   end
 
   def delete(conn, %{"id" => video_id}) do
-    video = Repo.get(Video, video_id)
-
-    # Just assuming this works as expected for now ;)
-    Repo.delete(video)
+    Screencast.delete_video(video_id)
 
     conn
       |> put_flash(:info, "Video deleted successfully")

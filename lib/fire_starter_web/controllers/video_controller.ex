@@ -53,4 +53,15 @@ defmodule FireStarterWeb.VideoController do
     end
   end
 
+  def delete(conn, %{"id" => video_id}) do
+    video = Repo.get(Video, video_id)
+
+    # Just assuming this works as expected for now ;)
+    Repo.delete(video)
+
+    conn
+      |> put_flash(:info, "Video deleted successfully")
+      |> redirect(to: video_path(conn, :index))
+  end
+
 end

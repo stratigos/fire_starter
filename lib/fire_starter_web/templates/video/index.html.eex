@@ -9,7 +9,11 @@
     <%= for video <- @videos do %>
       <li>
         <%= video.title %> -
-        <em><%= display_duration(video.duration) %></em>
+        <em><%= display_duration(video.duration) %></em> -
+        <%=
+          link "Delete", to: video_path(@conn, :delete, video.id),
+            method: :delete, data: [confirm: "Are you sure you want to remove Video ID: #{video.id}?"]
+        %>
       </li>
     <% end %>
   </ul>
